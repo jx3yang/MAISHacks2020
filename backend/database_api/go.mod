@@ -1,4 +1,4 @@
-module MAISHacks2020/backend/ping
+module MAISHacks2020/backend/database_api
 
 go 1.15
 
