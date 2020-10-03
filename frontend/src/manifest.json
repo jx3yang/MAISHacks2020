@@ -1,6 +1,6 @@
 {
-  "name": "Ant Design Pro",
-  "short_name": "Ant Design Pro",
+  "name": "MAISHacks2020",
+  "short_name": "MAISHacks2020",
   "display": "standalone",
   "start_url": "./?utm_source=homescreen",
   "theme_color": "#002140",
