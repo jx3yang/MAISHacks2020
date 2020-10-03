@@ -82,6 +82,7 @@ func basicGetQuote(collection string, document string) {
 	app, err := firebase.NewApp(context.Background(), nil, sa)
 
 	client, err := app.Firestore(context.Background())
+	defer client.Close()
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -91,8 +92,6 @@ func basicGetQuote(collection string, document string) {
 		log.Fatalln(err)
 	}
 
-	defer client.Close()
-
 	log.Print(res.Data())
 }
 
@@ -101,6 +100,7 @@ func basicSetQuote(collection string, document string, quote *Quote) {
 	app, err := firebase.NewApp(context.Background(), nil, sa)
 
 	client, err := app.Firestore(context.Background())
+	defer client.Close()
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -111,6 +111,4 @@ func basicSetQuote(collection string, document string, quote *Quote) {
 	}
 
 	log.Print(res)
-
-	defer client.Close()
 }
