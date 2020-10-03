@@ -13,7 +13,7 @@ export default defineConfig({
   },
   locale: {
     // default zh-CN
-    default: 'zh-CN',
+    default: 'en-US',
     antd: true,
     // default true, when it is true, will use `navigator.language` overwrite default
     baseNavigator: true,
@@ -48,13 +48,13 @@ export default defineConfig({
           routes: [
             {
               path: '/',
-              redirect: '/welcome',
+              redirect: '/dashboard',
             },
             {
-              path: '/welcome',
-              name: 'welcome',
-              icon: 'smile',
-              component: './Welcome',
+              path: '/dashboard',
+              name: 'Dashboard',
+              icon: 'dashboard',
+              component: './Dashboard',
             },
             {
               path: '/admin',
@@ -67,15 +67,21 @@ export default defineConfig({
                   path: '/admin/sub-page',
                   name: 'sub-page',
                   icon: 'smile',
-                  component: './Welcome',
+                  component: './Dashboard',
                   authority: ['admin'],
                 },
               ],
             },
             {
-              name: 'list.table-list',
+              name: 'Daily Survey',
+              icon: 'smile',
+              path: '/daily-survey',
+              component: './DailySurvey',
+            },
+            {
+              name: 'Calendar',
               icon: 'table',
-              path: '/list',
+              path: '/calendar',
               component: './ListTableList',
             },
             {
