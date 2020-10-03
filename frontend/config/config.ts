@@ -57,6 +57,12 @@ export default defineConfig({
               component: './Welcome',
             },
             {
+              path: '/socket',
+              name: 'socket',
+              component: './Socket',
+              hideInMenu: true,
+            },
+            {
               path: '/admin',
               name: 'admin',
               icon: 'crown',
