@@ -14,14 +14,13 @@
     />
     <meta
       name="description"
-      content="
-      开箱即用的中台前端/设计解决方案。"
+      content="Track your mental health"
     />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
     />
-    <title>Ant Design Pro</title>
+    <title>Student Life</title>
     <link rel="icon" href="<%= context.config.publicPath +'favicon.ico'%>" type="image/x-icon" />
   </head>
   <body>
@@ -60,7 +59,7 @@
           font-feature-settings: 'tnum';
           position: absolute;
           display: none;
-          color: #1890ff;
+          color: #A2CAA4;
           text-align: center;
           vertical-align: middle;
           opacity: 0;
@@ -90,7 +89,7 @@
           display: block;
           width: 9px;
           height: 9px;
-          background-color: #1890ff;
+          background-color: #A2CAA4;
           border-radius: 100%;
           -webkit-transform: scale(0.75);
           -ms-transform: scale(0.75);
@@ -148,6 +147,10 @@
           height: 14px;
         }
 
+        #loading-logo {
+          animation: lateralMove .7s infinite ease-in-out;
+        }
+
         @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
           .ant-spin-blur {
             background: #fff;
@@ -165,6 +168,11 @@
           to {
             opacity: 1;
           }
+        }
+
+        @keyframes lateralMove {
+          25% {transform: translateY(25px);}
+          75% {transform: translateY(-25px);}
         }
 
         @-webkit-keyframes antRotate {
@@ -191,7 +199,7 @@
           height: 100%;
         "
       >
-        <img src="<%= context.config.publicPath +'pro_icon.svg'%>" alt="logo" width="256" />
+        <img id="loading-logo" src="<%= context.config.publicPath +'logo.png'%>" alt="logo" width="64" />
         <div class="page-loading-warp">
           <div class="ant-spin ant-spin-lg ant-spin-spinning">
             <span class="ant-spin-dot ant-spin-dot-spin"
@@ -199,14 +207,6 @@
               ><i class="ant-spin-dot-item"></i><i class="ant-spin-dot-item"></i
             ></span>
           </div>
-        </div>
-        <div style="display: flex; justify-content: center; align-items: center">
-          <img
-            src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
-            width="32"
-            style="margin-right: 8px"
-          />
-          Ant Design
         </div>
       </div>
     </div>

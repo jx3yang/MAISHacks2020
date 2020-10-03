@@ -80,7 +80,7 @@ const LoginItem: React.FC<LoginItemProps> = (props) => {
     if (result === false) {
       return;
     }
-    message.success('获取验证码成功！验证码为：1234');
+    message.success('Successful verification code：1234');
     setTiming(true);
   }, []);
 
@@ -93,7 +93,6 @@ const LoginItem: React.FC<LoginItemProps> = (props) => {
           if (preSecond <= 1) {
             setTiming(false);
             clearInterval(interval);
-            // 重置秒数
             return countDown || 60;
           }
           return preSecond - 1;
@@ -131,7 +130,7 @@ const LoginItem: React.FC<LoginItemProps> = (props) => {
                   onGetCaptcha(value);
                 }}
               >
-                {timing ? `${count} 秒` : '获取验证码'}
+                {timing ? `${count}s` : 'Send Code'}
               </Button>
             </Col>
           </Row>

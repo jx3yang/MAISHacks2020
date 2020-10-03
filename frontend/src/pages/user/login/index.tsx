@@ -1,4 +1,3 @@
-import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox } from 'antd';
 import React, { useState } from 'react';
 import { Link, connect, Dispatch } from 'umi';
@@ -45,84 +44,80 @@ const Login: React.FC<LoginProps> = (props) => {
   return (
     <div className={styles.main}>
       <LoginForm activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
-        <Tab key="account" tab="账户密码登录">
+        <Tab key="account" tab="User Login">
           {status === 'error' && loginType === 'account' && !submitting && (
-            <LoginMessage content="账户或密码错误（admin/ant.design）" />
+            <LoginMessage content="Enter: admin/ant.design" />
           )}
 
           <UserName
             name="userName"
-            placeholder="用户名: admin or user"
+            placeholder="Enter admin or user"
             rules={[
               {
                 required: true,
-                message: '请输入用户名!',
+                message: 'Enter a valid username.',
               },
             ]}
           />
           <Password
             name="password"
-            placeholder="密码: ant.design"
+            placeholder="Enter test123"
             rules={[
               {
                 required: true,
-                message: '请输入密码！',
+                message: 'Password did not match.',
               },
             ]}
           />
         </Tab>
-        <Tab key="mobile" tab="手机号登录">
+        <Tab key="mobile" tab="Mobile Login">
           {status === 'error' && loginType === 'mobile' && !submitting && (
-            <LoginMessage content="验证码错误" />
+            <LoginMessage content="Verification code error." />
           )}
           <Mobile
             name="mobile"
-            placeholder="手机号"
+            placeholder="Phone number"
             rules={[
               {
                 required: true,
-                message: '请输入手机号！',
+                message: 'Enter a valid phone number.',
               },
               {
-                pattern: /^1\d{10}$/,
-                message: '手机号格式错误！',
+                pattern: /^\d{10}$/,
+                message: 'Enter a valid phone number.',
               },
             ]}
           />
           <Captcha
             name="captcha"
-            placeholder="验证码"
+            placeholder="Verification code"
             countDown={120}
-            getCaptchaButtonText=""
-            getCaptchaSecondText="秒"
+            getCaptchaButtonText="Verify"
+            getCaptchaSecondText=""
             rules={[
               {
                 required: true,
-                message: '请输入验证码！',
+                message: 'Verification code invalid.',
               },
             ]}
           />
         </Tab>
         <div>
           <Checkbox checked={autoLogin} onChange={(e) => setAutoLogin(e.target.checked)}>
-            自动登录
+            Remember me
           </Checkbox>
           <a
             style={{
               float: 'right',
             }}
           >
-            忘记密码
+            Forgot password?
           </a>
         </div>
-        <Submit loading={submitting}>登录</Submit>
+        <Submit loading={submitting}>Login</Submit>
         <div className={styles.other}>
-          其他登录方式
-          <AlipayCircleOutlined className={styles.icon} />
-          <TaobaoCircleOutlined className={styles.icon} />
-          <WeiboCircleOutlined className={styles.icon} />
           <Link className={styles.register} to="/user/register">
-            注册账户
+            Register New Account
           </Link>
         </div>
       </LoginForm>
