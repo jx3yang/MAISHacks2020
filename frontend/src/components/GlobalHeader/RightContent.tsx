@@ -1,6 +1,5 @@
-import { Tooltip, Tag } from 'antd';
+import { Tag } from 'antd';
 import { Settings as ProSettings } from '@ant-design/pro-layout';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import React from 'react';
 import { connect, ConnectProps, SelectLang } from 'umi';
 import { ConnectState } from '@/models/connect';
@@ -30,14 +29,9 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = (props) => {
     <div className={className}>
       <HeaderSearch
         className={`${styles.action} ${styles.search}`}
-        placeholder="站内搜索"
-        defaultValue="umi ui"
+        placeholder="Search"
         options={[
           { label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>, value: 'umi ui' },
-          {
-            label: <a href="next.ant.design">Ant Design</a>,
-            value: 'Ant Design',
-          },
           {
             label: <a href="https://protable.ant.design/">Pro Table</a>,
             value: 'Pro Table',
@@ -51,7 +45,7 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = (props) => {
         //   //console.log('input', value);
         // }}
       />
-      <Tooltip title="使用文档">
+      {/* <Tooltip title="使用文档">
         <a
           style={{
             color: 'inherit',
@@ -63,7 +57,7 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = (props) => {
         >
           <QuestionCircleOutlined />
         </a>
-      </Tooltip>
+      </Tooltip> */}
       <Avatar />
       {REACT_APP_ENV && (
         <span>
