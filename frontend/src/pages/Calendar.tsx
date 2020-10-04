@@ -45,15 +45,16 @@ export default (): React.ReactNode => {
     })
   }
 
-  function dateCellRender(value) {
+  const dateCellRender = (value) => {
     if (listData) {
       const result = listData.filter(data => data.date === value.format("YYYY-MM-DD"));
       if (result.length) {
+        console.log(result);
         return (
           <ul className="events">
             {result.map(item => (
               <li key={item.alert.content}>
-                <Badge status={item.type} text={item.alert.content} />
+                <Badge status={item.alert.type} text={item.alert.content} />
               </li>
             ))}
           </ul>
