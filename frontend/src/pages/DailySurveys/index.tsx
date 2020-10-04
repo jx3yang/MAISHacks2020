@@ -47,7 +47,6 @@ export default (): React.ReactNode => {
       "Sleephours": values.sleep.count,
       "Rating":values.sleep.rate
     };
-    console.log(dataInput);
 
     // Request POST Database API
     await addToDatabase(dataInput);
