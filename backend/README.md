@@ -33,7 +33,13 @@ GET:
         URI localhost:3500/api/get_form/jixi
 
     out: 
-        (WIP)
+        [
+            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message","Sleephours":8,"Rating":5},
+            {"Name":"jixi","Timestamp":"2020/10/07","Message":"some message","Sleephours":3,"Rating":2},
+            {"Name":"jixi","Timestamp":"2020/10/06","Message":"some message","Sleephours":2,"Rating":1},
+            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message","Sleephours":5,"Rating":3},
+            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message","Sleephours":6,"Rating":5}
+        ]
 
 POST: 
     
@@ -60,7 +66,13 @@ POST:
         URI localhost:3500/api/add_form
 
         BODY
-        (WIP)
+        [
+            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message","Sleephours":8,"Rating":5},
+            {"Name":"jixi","Timestamp":"2020/10/07","Message":"some message","Sleephours":3,"Rating":2},
+            {"Name":"jixi","Timestamp":"2020/10/06","Message":"some message","Sleephours":2,"Rating":1},
+            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message","Sleephours":5,"Rating":3},
+            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message","Sleephours":6,"Rating":5}
+        ]
 
     out: 
         null

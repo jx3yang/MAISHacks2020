@@ -7,11 +7,9 @@ type Metric struct {
 }
 
 type Form struct {
-	Name      string
-	Timestamp string
-	field1    string
-	field2    string
-	field3    string
-	field4    string
-	field5    string
+	Name       string
+	Timestamp  string
+	Message    string
+	Sleephours int
+	Rating     int
 }
