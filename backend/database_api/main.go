@@ -20,9 +20,8 @@ const port = "3500"
 
 var private_key_file string
 
-type Quote struct {
-	Quote  string
-	Author string
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
 
 func main() {
@@ -63,6 +62,8 @@ func main() {
 
 func getMetric(w http.ResponseWriter, r *http.Request) {
 
+	enableCors(&w)
+
 	vars := mux.Vars(r)
 	collection := vars["type"]
 	name := vars["name"]
@@ -74,6 +75,8 @@ func getMetric(w http.ResponseWriter, r *http.Request) {
 }
 
 func addMetric(w http.ResponseWriter, r *http.Request) {
+
+	enableCors(&w)
 
 	vars := mux.Vars(r)
 	collection := vars["type"]
@@ -137,6 +140,8 @@ func addFirebaseMetric(collection string, metrics []Metric) {
 
 func getForm(w http.ResponseWriter, r *http.Request) {
 
+	enableCors(&w)
+
 	vars := mux.Vars(r)
 	name := vars["name"]
 
@@ -147,6 +152,8 @@ func getForm(w http.ResponseWriter, r *http.Request) {
 }
 
 func addForm(w http.ResponseWriter, r *http.Request) {
+
+	enableCors(&w)
 
 	var forms []Form
 
