@@ -93,5 +93,5 @@ def main():
     aggregated_df = agg_seasons(computed_df)
     aggregated_df.to_csv("../model_training/data/u" + userid + "_features.csv")
 
-if __name__ == "main()":
+if __name__ == "__main__":
     main()
