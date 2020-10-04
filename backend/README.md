@@ -9,3 +9,32 @@ Default port of this API is on 3500
 4. Select **Go** and click on **Generete new private key**
 5. Place it in *database_api/.sa/*
 6. execute `go get firebase.google.com/go` in *database_api/*
+
+### Usage
+GET: `:3500/api/get_metric/{type}/{name}`
+
+    in: URI localhost:3500/api/get_metric/activity/jixi
+
+    out: 
+        [
+            {"Name":"jixi","Timestamp":"2020/10/03","Value":10},
+            {"Name":"jixi","Timestamp":"2020/10/07","Value":30},
+            {"Name":"jixi","Timestamp":"2020/10/06","Value":60},
+            {"Name":"jixi","Timestamp":"2020/10/05","Value":20},
+            {"Name":"jixi","Timestamp":"2020/10/04","Value":80}
+        ]
+
+POST: `:3500/api/set_metric/{type}`
+
+    in: URI localhost:3500/api/get_metric/activity/
+
+        BODY
+        [
+            {"Name":"jixi","Timestamp":"2020/10/03","Value":10},
+            {"Name":"jixi","Timestamp":"2020/10/07","Value":30},
+            {"Name":"jixi","Timestamp":"2020/10/06","Value":60},
+            {"Name":"jixi","Timestamp":"2020/10/05","Value":20},
+            {"Name":"jixi","Timestamp":"2020/10/04","Value":80}
+        ]
+
+    out: null
