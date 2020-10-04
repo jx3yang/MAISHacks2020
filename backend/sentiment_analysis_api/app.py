@@ -7,6 +7,7 @@ import json
 
 app = Flask(__name__)
 cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 model = tf.keras.models.load_model('model')
 
 index2Sentiment = {
@@ -33,6 +34,7 @@ def predict():
     if 'messages' not in data:
         return { 'success': False, 'predictions': [] }
     predictions = model.predict(data.get('messages'))
+    print(predictions)
     return {
         'success': True,
         'predictions': [index2Sentiment[np.argmax(prediction)] for prediction in predictions]

@@ -9,7 +9,9 @@ export async function fakeTimeSeries() {
 type MetricType = 'act_inf_0' | 'act_inf_1' | 'phone_charging' | 'conversation'
 
 export async function getMetric(metricType: MetricType) {
-    return request(`http://localhost:5003/${metricType}`);
+    return request(`http://localhost:5003/${metricType}`, {
+        credentials: 'omit',
+    });
 }
 
 export async function runAnomalyDetection(series) {
