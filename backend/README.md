@@ -34,11 +34,11 @@ GET:
 
     out: 
         [
-            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message","Sentiment":"positive","Sleephours":8,"Rating":5},
+            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message","Sentiment":"negative","Sleephours":8,"Rating":5},
             {"Name":"jixi","Timestamp":"2020/10/07","Message":"some message","Sentiment":"positive","Sleephours":3,"Rating":2},
             {"Name":"jixi","Timestamp":"2020/10/06","Message":"some message","Sentiment":"positive","Sleephours":2,"Rating":1},
-            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message","Sentiment":"positive","Sleephours":5,"Rating":3},
-            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message","Sentiment":"positive","Sleephours":6,"Rating":5}
+            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message","Sentiment":"negative","Sleephours":5,"Rating":3},
+            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message","Sentiment":"neutral","Sleephours":6,"Rating":5}
         ]
 
 POST: 
@@ -67,11 +67,11 @@ POST:
 
         BODY
         [
-            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message","Sentiment":"positive","Sleephours":8,"Rating":5},
+            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message","Sentiment":"negative","Sleephours":8,"Rating":5},
             {"Name":"jixi","Timestamp":"2020/10/07","Message":"some message","Sentiment":"positive","Sleephours":3,"Rating":2},
             {"Name":"jixi","Timestamp":"2020/10/06","Message":"some message","Sentiment":"positive","Sleephours":2,"Rating":1},
-            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message","Sentiment":"positive","Sleephours":5,"Rating":3},
-            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message","Sentiment":"positive","Sleephours":6,"Rating":5}
+            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message","Sentiment":"negative","Sleephours":5,"Rating":3},
+            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message","Sentiment":"neutral","Sleephours":6,"Rating":5}
         ]
 
     out: 
