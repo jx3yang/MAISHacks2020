@@ -16,7 +16,7 @@ const proSettings: DefaultSettings = {
   menu: {
     locale: true,
   },
-  title: 'Routine Smart',
+  title: 'RoutineSmart',
   pwa: false,
   iconfontUrl: '',
 };

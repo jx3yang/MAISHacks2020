@@ -27,6 +27,7 @@ const Dashboard: React.FC<{}> = () => {
     });
 
     getMetric('act_inf_1').then(res => {
+      if (!res) return;
       const series: any[] = formatSeries(res['series']);
       runAnomalyDetection(series)
         .then(res => res.json())
@@ -39,6 +40,7 @@ const Dashboard: React.FC<{}> = () => {
     });
 
     getMetric('act_inf_0').then(res => {
+      if (!res) return;
       const series: any[] = formatSeries(res['series']);
       runAnomalyDetection(series)
         .then(res => res.json())
@@ -51,6 +53,7 @@ const Dashboard: React.FC<{}> = () => {
     });
 
     getMetric('conversation').then(res => {
+      if (!res) return;
       const series: any[] = formatSeries(res['series']);
       runAnomalyDetection(series)
         .then(res => res.json())
@@ -63,6 +66,7 @@ const Dashboard: React.FC<{}> = () => {
     });
 
     getMetric('phone_charging').then(res => {
+      if (!res) return;
       const series: any[] = formatSeries(res['series']);
       runAnomalyDetection(series)
         .then(res => res.json())
