@@ -1,14 +1,15 @@
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Form, Modal, Button, Card, Alert  } from 'antd';
+import moment from 'moment';
 
 import JournalSurvey from './Components/JournalSurvey';
 import SleepSurvey from './Components/SleepSurvey';
-
 // import styles from './index.less';
 
 // Sentiment API Endpoint
-const url = "http://localhost:5002/predict"
+const sentimentUrl = "http://localhost:5002/predict";
+const databaseUrl = "http://localhost:3500/api/add_forms/";
 
 const layout = {
   labelCol: { span: 24 },
@@ -25,37 +26,76 @@ const validateMessages = {
   },
 };
 
-
 export default (): React.ReactNode => {
   
-  const onFinish = async (values: {journal: string}) => {
+  const onFinish = async (values: {journal: string, sleep: {count: number, rate: number}}) => {
     
     // Display success message
     success();
-    
+
     // Request Sentiment API
-    const response = await fetch(url, {
+    const sentiment = await getSentiment([values.journal]);
+
+    // Constructing Database API body
+    const date = moment().format("YYYY-MM-DD");
+    const name = "Kevin";
+    const dataInput = {
+      "Name": name,
+      "Timestamp": date,
+      "Message": values.journal,
+      "Sentiment": (sentiment == "positive"? 1 : 0),
+      "Sleephours": values.sleep.count,
+      "Rating":values.sleep.rate
+    };
+    console.log(dataInput);
+
+    // Request POST Database API
+    await addToDatabase(dataInput);
+  };
+
+  const getSentiment = async (messages: string[]) => {
+
+    // Request Sentiment API
+    const response = await fetch(sentimentUrl, {
       method: 'POST',
       headers: {
         contentType: "application/json"
       },
-      body: JSON.stringify({messages: [values.journal]})
+      body: JSON.stringify({messages})
     });
     
+    // Throw error if no response
     if (!response) error();
-  
     const result = await response.json();
     if (!result.success) error();
-    
-    console.log(result.predictions[0]);
+    return result.predictions[0];
   };
 
+
+  const addToDatabase = async (dataInput: Object) => {
+
+    // Request Sentiment API
+    const response = await fetch(databaseUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        contentType: "application/json"
+      },
+      body: JSON.stringify([dataInput])
+    });
+    
+    // Throw error if no response
+    if (!response) error();
+  };
+  
+  // Handling success modal
   const success = () => {
     Modal.success({
       content: 'Thank you for submitting and see you tomorrow!',
     });
   }
 
+  // Handling error modal
   const error = () => {
     Modal.error({
       content: 'Oops...Something went wrong.',
