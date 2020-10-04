@@ -4,11 +4,13 @@ import os
 import pandas as pd
 import requests
 from flask import Flask, request
+from flask_cors import CORS
 
 from api.endpoints import BATCH_DETECTION, LATEST_POINT_DETECTION
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
+cors = CORS(app)
 
 SERIES_KEY = 'series'
 TIMESTAMP_KEY = 'timestamp'
@@ -22,10 +24,10 @@ subscription_key = df['key'][0]
 del df
 ###############################################################
 
-GRANULARITY = 'daily'
+GRANULARITY = 'hourly'
 
 def get_points():
-    points = request.get_json()
+    points = request.get_json(force=True)
     if SERIES_KEY not in points:
         return [], False
     points = points[SERIES_KEY]

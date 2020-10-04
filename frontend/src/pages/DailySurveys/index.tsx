@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Form, Modal, Button, Card, Alert  } from 'antd';
 import moment from 'moment';
@@ -27,14 +27,15 @@ const validateMessages = {
 };
 
 export default (): React.ReactNode => {
-  
   const onFinish = async (values: {journal: string, sleep: {count: number, rate: number}}) => {
     
-    // Display success message
-    success();
-
     // Request Sentiment API
     const sentiment = await getSentiment([values.journal]);
+
+    // Display success message
+    success(sentiment as string);
+
+    
 
     // Constructing Database API body
     const date = moment().format("YYYY-MM-DD");
@@ -86,11 +87,29 @@ export default (): React.ReactNode => {
     // Throw error if no response
     if (!response) error();
   };
+
+  const getSentimentMessage = (sentiment: string) => {
+    console.log(sentiment)
+    switch (sentiment) {
+      case 'positive': {
+        return 'It seems you had a great day, happy to hear!';
+      }
+      case 'neutral': {
+        return 'Another day in life it seems!'
+      }
+      default: {
+        return "We all have our ups and lows, but don't give up!"
+      }
+    }
+  } 
   
   // Handling success modal
-  const success = () => {
+  const success = (sentiment: string) => {
     Modal.success({
-      content: 'Thank you for submitting and see you tomorrow!',
+      content: <div>
+          Thank you for submitting and see you tomorrow! <br />
+          {getSentimentMessage(sentiment)}
+      </div>,
     });
   }
 
