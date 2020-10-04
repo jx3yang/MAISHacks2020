@@ -10,7 +10,10 @@ import (
 	"context"
 
 	firebase "firebase.google.com/go"
+	"google.golang.org/api/iterator"
 	"google.golang.org/api/option"
+
+	"github.com/gorilla/mux"
 )
 
 const port = "3500"
@@ -47,37 +50,42 @@ func main() {
 
 	private_key_file = files[0]
 
-	http.HandleFunc("/api/get_quote/", func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case "POST":
+	router := mux.NewRouter().StrictSlash(true)
 
-			var body map[string]interface{}
-			json.NewDecoder(r.Body).Decode(&body)
+	router.HandleFunc("/api/get_metric/{type}/{name}", getMetric).Methods("GET")
+	router.HandleFunc("/api/set_metric/{type}/", setMetric).Methods("POST")
 
-			basicGetQuote("sampleData", body["author"].(string))
-		}
-	})
-
-	http.HandleFunc("/api/set_quote/", func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case "POST":
-
-			var body map[string]interface{}
-			json.NewDecoder(r.Body).Decode(&body)
-
-			quote := Quote{
-				Quote:  body["quote"].(string),
-				Author: body["author"].(string),
-			}
-
-			basicSetQuote("sampleData", body["author"].(string), &quote)
-		}
-	})
-
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
 
-func basicGetQuote(collection string, document string) {
+func getMetric(w http.ResponseWriter, r *http.Request) {
+
+	vars := mux.Vars(r)
+	_type := vars["type"]
+	name := vars["name"]
+
+	docs := getFirebaseMetric(_type, name)
+
+	json.NewEncoder(w).Encode(docs)
+
+}
+
+func setMetric(w http.ResponseWriter, r *http.Request) {
+
+	vars := mux.Vars(r)
+	_type := vars["type"]
+
+	var metrics []Metric
+
+	if err := json.NewDecoder(r.Body).Decode(&metrics); err != nil {
+		log.Fatalln(err)
+		return
+	}
+
+	setFirebaseMetric(_type, metrics)
+}
+
+func getFirebaseMetric(_type string, name string) *[]map[string]interface{} {
 	sa := option.WithCredentialsFile(private_key_file)
 	app, err := firebase.NewApp(context.Background(), nil, sa)
 
@@ -87,15 +95,29 @@ func basicGetQuote(collection string, document string) {
 		log.Fatalln(err)
 	}
 
-	res, err := client.Collection(collection).Doc(document).Get(context.Background())
+	res := client.Collection(_type).Where("Name", "==", name).Documents(context.Background())
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	log.Print(res.Data())
+	var docs []map[string]interface{}
+
+	for {
+		doc, err := res.Next()
+		if err == iterator.Done {
+			break
+		}
+		if err != nil {
+			return nil
+		}
+
+		docs = append(docs, doc.Data())
+	}
+
+	return &docs
 }
 
-func basicSetQuote(collection string, document string, quote *Quote) {
+func setFirebaseMetric(_type string, metrics []Metric) {
 	sa := option.WithCredentialsFile(private_key_file)
 	app, err := firebase.NewApp(context.Background(), nil, sa)
 
@@ -105,10 +127,10 @@ func basicSetQuote(collection string, document string, quote *Quote) {
 		log.Fatalln(err)
 	}
 
-	res, err := client.Collection(collection).Doc(document).Set(context.Background(), quote)
-	if err != nil {
-		log.Fatalln(err)
+	for _, metric := range metrics {
+		_, _, err := client.Collection(_type).Add(context.Background(), metric)
+		if err != nil {
+			log.Fatalln(err)
+		}
 	}
-
-	log.Print(res)
 }
