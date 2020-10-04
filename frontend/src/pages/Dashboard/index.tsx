@@ -8,7 +8,7 @@ const Dashboard: React.FC<{}> = () => {
   const [data, setData] = useState<TimelineItem[]>([]);
 
   const makeItem = (x: number, y: number): TimelineItem => {
-    const item: TimelineItem = { x, y };
+    const item: TimelineItem = { x, y, anomaly: y < 1170 };
     return item;
   }
 

@@ -1,4 +1,4 @@
-import { Axis, Chart, Geom, Tooltip } from 'bizcharts';
+import { Axis, Chart, Geom, Line, Point, Tooltip } from 'bizcharts';
 
 import DataSet from '@antv/data-set'
 import React from 'react'
@@ -7,6 +7,7 @@ import styles from './style.less'
 export interface TimelineItem {
   x: number;
   y: number;
+  anomaly: boolean;
 }
 
 interface TimelineChartProps {
@@ -55,9 +56,10 @@ const TimelineChart: React.FC<TimelineChartProps> = (props) => {
     })
     .transform({
       type: 'map',
-      callback(row: { y: string }) {
+      callback(row: { y: string, anomaly: boolean }) {
         const newRow = { ...row };
         newRow[title] = row.y;
+        newRow['state'] = row.anomaly ? 'anomaly' : 'regularity';
         return newRow;
       },
     })
@@ -83,15 +85,15 @@ const TimelineChart: React.FC<TimelineChartProps> = (props) => {
     },
   };
 
-  console.log(dv)
-
   return (
     <div className={styles.timelineChart} style={{ height: 450 }}>
       <h3>{title}</h3>
       <Chart height={400} padding={[60, 20, 40, 40]} data={dv} scale={cols} forceFit>
-        <Axis name='x' />
-        <Tooltip />
-        <Geom type='line' position='x*value' size={2} color={color} />
+        <Line shape='smooth' position='x*value' color={color} />
+        <Point 
+          position='x*value' 
+          color={['state', (state) => state === 'anomaly' ? 'red' : color]}
+        />
       </Chart>
     </div>
   );
