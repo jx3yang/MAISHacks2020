@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Badge, Card, Calendar, Alert, Modal } from 'antd';
 import moment from 'moment';
-// import styles from './Calendar.less';
+import styles from './Calendar.less';
 
 const fetchFormsURL = "http://localhost:3500/api/get_forms/Kevin";
 
@@ -10,11 +10,12 @@ export default (): React.ReactNode => {
 
   const [value, setValue] = useState<moment.Moment>(moment());
   const [selectedValue, setSelectedValue] = useState<moment.Moment>(moment());
+  const [listData, setListData] = useState([]);
+  const [done, setDone] = useState<boolean>(false);
 
   useEffect(() => {
     getDailyMood();
   }, []);
-
 
   const onSelect = (newValue: moment.Moment) => {
     setSelectedValue(newValue);
@@ -32,11 +33,10 @@ export default (): React.ReactNode => {
     })
     if (response.status !== 200) error();
     const data = await response.json();
-    console.log(data);
     const convertedData = await convertData(data);
-    console.log(convertedData);
-    convertData;
+    setListData(convertedData);
   }
+
 
   const convertData = async (data) => {
     return data.map((survey) => {
@@ -46,17 +46,20 @@ export default (): React.ReactNode => {
   }
 
   function dateCellRender(value) {
-    console.log(value.format("YYYY-MM-DD"));
-    // const listData = getListData(value);
-    // return (
-    //   <ul className="events">
-    //     {listData.map(item => (
-    //       <li key={item.content}>
-    //         <Badge status={item.type} text={item.content} />
-    //       </li>
-    //     ))}
-    //   </ul>
-    // );
+    if (listData) {
+      const result = listData.filter(data => data.date === value.format("YYYY-MM-DD"));
+      if (result.length) {
+        return (
+          <ul className="events">
+            {result.map(item => (
+              <li key={item.alert.content}>
+                <Badge status={item.type} text={item.alert.content} />
+              </li>
+            ))}
+          </ul>
+        );
+      }
+    }
   }
 
   // Handling error modal
