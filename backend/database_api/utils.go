@@ -6,5 +6,10 @@ type Metric struct {
 	Value     float32
 }
 
-type Survey struct {
+type Form struct {
+	Name       string
+	Timestamp  string
+	Message    string
+	Sleephours int
+	Rating     int
 }
