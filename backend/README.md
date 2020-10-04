@@ -13,7 +13,7 @@ Default port of this API is on 3500
 ### Usage
 GET: `:3500/api/get_metric/{type}/{name}`
 
-    in: URI **localhost:3500/api/get_metric/activity/jixi**
+    in: URI localhost:3500/api/get_metric/activity/jixi
 
     out: 
         [
@@ -26,7 +26,7 @@ GET: `:3500/api/get_metric/{type}/{name}`
 
 POST: `:3500/api/set_metric/{type}`
 
-    in: URI **localhost:3500/api/get_metric/activity/jixi**
+    in: URI localhost:3500/api/get_metric/activity/
 
         BODY
         [
