@@ -96,9 +96,6 @@ func getFirebaseMetric(_type string, name string) *[]map[string]interface{} {
 	}
 
 	res := client.Collection(_type).Where("Name", "==", name).Documents(context.Background())
-	if err != nil {
-		log.Fatalln(err)
-	}
 
 	var docs []map[string]interface{}
 
