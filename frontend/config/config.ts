@@ -82,13 +82,13 @@ export default defineConfig({
               name: 'Daily Survey',
               icon: 'smile',
               path: '/daily-survey',
-              component: './DailySurvey',
+              component: './DailySurveys',
             },
             {
               name: 'Calendar',
               icon: 'table',
               path: '/calendar',
-              component: './ListTableList',
+              component: './Calendar',
             },
             {
               component: './404',
