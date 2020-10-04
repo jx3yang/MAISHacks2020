@@ -30,15 +30,15 @@ GET:
     - `:3500/api/get_form/{name}
 
     in: 
-        URI localhost:3500/api/get_form/jixi
+        URI localhost:3500/api/get_forms/jixi
 
     out: 
         [
-            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message","Sleephours":8,"Rating":5},
-            {"Name":"jixi","Timestamp":"2020/10/07","Message":"some message","Sleephours":3,"Rating":2},
-            {"Name":"jixi","Timestamp":"2020/10/06","Message":"some message","Sleephours":2,"Rating":1},
-            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message","Sleephours":5,"Rating":3},
-            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message","Sleephours":6,"Rating":5}
+            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message",Sentiment:0,"Sleephours":8,"Rating":5},
+            {"Name":"jixi","Timestamp":"2020/10/07","Message":"some message",Sentiment:1,"Sleephours":3,"Rating":2},
+            {"Name":"jixi","Timestamp":"2020/10/06","Message":"some message",Sentiment:1,"Sleephours":2,"Rating":1},
+            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message",Sentiment:0,"Sleephours":5,"Rating":3},
+            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message",Sentiment:1,"Sleephours":6,"Rating":5}
         ]
 
 POST: 
@@ -63,15 +63,15 @@ POST:
     - `:3500/api/add_form`
 
     in: 
-        URI localhost:3500/api/add_form
+        URI localhost:3500/api/add_forms/
 
         BODY
         [
-            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message","Sleephours":8,"Rating":5},
-            {"Name":"jixi","Timestamp":"2020/10/07","Message":"some message","Sleephours":3,"Rating":2},
-            {"Name":"jixi","Timestamp":"2020/10/06","Message":"some message","Sleephours":2,"Rating":1},
-            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message","Sleephours":5,"Rating":3},
-            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message","Sleephours":6,"Rating":5}
+            {"Name":"jixi","Timestamp":"2020/10/03","Message":"some message",Sentiment:0,"Sleephours":8,"Rating":5},
+            {"Name":"jixi","Timestamp":"2020/10/07","Message":"some message",Sentiment:1,"Sleephours":3,"Rating":2},
+            {"Name":"jixi","Timestamp":"2020/10/06","Message":"some message",Sentiment:1,"Sleephours":2,"Rating":1},
+            {"Name":"jixi","Timestamp":"2020/10/05","Message":"some message",Sentiment:0,"Sleephours":5,"Rating":3},
+            {"Name":"jixi","Timestamp":"2020/10/04","Message":"some message",Sentiment:1,"Sleephours":6,"Rating":5}
         ]
 
     out: 
