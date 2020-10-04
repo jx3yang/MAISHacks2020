@@ -1,11 +1,14 @@
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Form, Input, Button, Card, Alert  } from 'antd';
+import { Form, Modal, Button, Card, Alert  } from 'antd';
 
 import JournalSurvey from './Components/JournalSurvey';
 import SleepSurvey from './Components/SleepSurvey';
 
 // import styles from './index.less';
+
+// Sentiment API Endpoint
+const url = "http://localhost:5002/predict"
 
 const layout = {
   labelCol: { span: 24 },
@@ -15,7 +18,6 @@ const layout = {
 const validateMessages = {
   required: '${label} is required!',
   types: {
-    email: '${label} is not validate email!',
     number: '${label} is not a validate number!',
   },
   number: {
@@ -23,18 +25,49 @@ const validateMessages = {
   },
 };
 
+
 export default (): React.ReactNode => {
   
-  const onFinish = (values: Object) => {
-    console.log(values);
+  const onFinish = async (values: {journal: string}) => {
+    
+    // Display success message
+    success();
+    
+    // Request Sentiment API
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        contentType: "application/json"
+      },
+      body: JSON.stringify({messages: [values.journal]})
+    });
+    
+    if (!response) error();
+  
+    const result = await response.json();
+    if (!result.success) error();
+    
+    console.log(result.predictions[0]);
   };
+
+  const success = () => {
+    Modal.success({
+      content: 'Thank you for submitting and see you tomorrow!',
+    });
+  }
+
+  const error = () => {
+    Modal.error({
+      content: 'Oops...Something went wrong.',
+    });
+  }
   
   return (
   <PageContainer>
     <Card>
       <Alert
         message="This survey is meant to help us understand how you are feeling."
-        type="success"
+        type="info"
         showIcon
         banner
         style={{
