@@ -1,4 +1,4 @@
-import { Axis, Chart, Geom, Line, Point, Tooltip } from 'bizcharts';
+import { Chart, Line, Point } from 'bizcharts';
 
 import DataSet from '@antv/data-set'
 import React from 'react'
