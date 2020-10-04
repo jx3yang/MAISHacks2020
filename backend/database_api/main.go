@@ -169,7 +169,7 @@ func getFirebaseForm(name string) *[]map[string]interface{} {
 		log.Fatalln(err)
 	}
 
-	res := client.Collection("Form").Where("Name", "==", name).Documents(context.Background())
+	res := client.Collection("Surveys").Where("Name", "==", name).Documents(context.Background())
 
 	var docs []map[string]interface{}
 
