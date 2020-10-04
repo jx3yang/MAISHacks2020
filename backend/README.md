@@ -11,9 +11,12 @@ Default port of this API is on 3500
 6. execute `go get firebase.google.com/go` in *database_api/*
 
 ### Usage
-GET: `:3500/api/get_metric/{type}/{name}`
+GET: 
+    
+    - `:3500/api/get_metric/{type}/{name}`
 
-    in: URI localhost:3500/api/get_metric/activity/jixi
+    in: 
+        URI localhost:3500/api/get_metric/activity/jixi
 
     out: 
         [
@@ -24,9 +27,20 @@ GET: `:3500/api/get_metric/{type}/{name}`
             {"Name":"jixi","Timestamp":"2020/10/04","Value":80}
         ]
 
-POST: `:3500/api/set_metric/{type}`
+    - `:3500/api/get_form/{name}
 
-    in: URI localhost:3500/api/get_metric/activity/
+    in: 
+        URI localhost:3500/api/get_form/jixi
+
+    out: 
+        (WIP)
+
+POST: 
+    
+    - `:3500/api/add_metric/{type}`
+
+    in: 
+        URI localhost:3500/api/add_metric/activity/
 
         BODY
         [
@@ -37,4 +51,16 @@ POST: `:3500/api/set_metric/{type}`
             {"Name":"jixi","Timestamp":"2020/10/04","Value":80}
         ]
 
-    out: null
+    out: 
+        null
+
+    - `:3500/api/add_form`
+
+    in: 
+        URI localhost:3500/api/add_form
+
+        BODY
+        (WIP)
+
+    out: 
+        null
