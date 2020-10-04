@@ -10,7 +10,7 @@ type Form struct {
 	Name       string
 	Timestamp  string
 	Message    string
-	Sentiment  int
+	Sentiment  string
 	Sleephours int
 	Rating     int
 }
