@@ -1,0 +1,67 @@
+# RoutineSmart
+Routine smart is a digital health platform empowering you to monitor and gain awareness of your personal routine.
+
+[add image of interface or logo or anything visual tbh]
+
+
+## Description
+From the moment you wake up, to the first email you read, you probably follow a routine you can easily identify. Now, could you describe what happens between that email and your late-night snack? Obviously, our behaviors are not randomly organized; we all have routines, or overarching structures to organize what we set to accomplish on a given day.
+
+RoutineSmart enables you to dive deep into your routine by leveraging the sensing capabilities of your mobile phone. Powered by Microsoft Azure Cognitive Services, our web plaform analyzes these metrics using state-of-the-art AI technology to identify significant shift from your routine. From seemingly unimportant metrics such as "when was my phone unlocked", rich information can be inferred about sleep disruption for example.
+
+
+## Platform features
+The platform packs many useful features for users, caregivers, health professionals, or therapists;
+- Leverage our mobile phone sensing capabilities to automatically detect anomaly in your routine;
+- Inspect visualizations and observe trends in your daily behaviors;
+- Use the diary to leave traces of your thoughts, your achievements, your worries, or your to-do list;
+- Complete quick clinically-inspired questionnaires to track your health;
+- Choose to have automated notifications for yourself or trusted contacts when undergoing significant routine shifts.
+
+
+## Our project
+### Motivation
+The growing field of research in "reality mining" establishes significant links between routine itself (structured behaviors) and mental health. The disorganization of behaviors as been shown to be associated with lower mood and higher stress in normal populations and predictive of manic-depressive phases shift in bipolar disorder or psychosis in shizophrenia. Advancements in machine-learning and AI are central to the research in this domain and the creation of digital health tools promoting autonomy in health management. Additionally, creating functional, useful, ethical, and open source applications desirable for users enables better data collection to further improve digital health solutions.
+
+### Basis
+- Started from the open source StudentLife dataset;
+- It contains data collected from undergrad students through a mobile phone application over 10 weeks;
+- Data is both actively and passively collected (e.g., surveying the user on mood vs. timestamping when the phone is locked);
+- Some passive data is inferred through the application's classifiers (e.g., is the user walking or stationary);
+
+### Conceptualization
+- Started from the dataset considering open sensing frameworks are available (Funf, Beweit);
+- Considered privacy concerns to be solvable by running algorithms locally and only sending results to database (e.g., sentiment analysis of diary);
+- We decided to limit our proof-of-concept to a set of features, which could expanded upon with more time and resources.
+
+### Components
+**User interface:**
+-
+-
+**Database:**
+-
+-
+**Data preprocessing:**
+-
+-
+**Calls to Azure Cognitive Services API:**
+-
+-
+**Outcomes of detected anomaly:**
+-
+-
+
+## Future Directions
+The plaform would benefit from these additional features or considerations to fulfill its purpose:
+- Improve interpretability of features for end users;
+- Reduce model to clinically or practically relevant features;
+- Add forecasting capabilities;
+- Add appropriate health resources and services for user; 
+
+
+**Keywords:**
+-	Routine noun synonyms : cycle, habit, practice, pattern, program
+-	Routine adj : everyday, regular, ordinary, periodic, usual
+-	The sensing aspect: monitor, track, follow, record
+-	The “individually fitted” aspect: capture, characteristic, personalized, carefully
+-	The “smart” aspect: insights, identify, recognize, infer, notice, perceive
