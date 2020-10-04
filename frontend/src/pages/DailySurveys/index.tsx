@@ -43,7 +43,7 @@ export default (): React.ReactNode => {
       "Name": name,
       "Timestamp": date,
       "Message": values.journal,
-      "Sentiment": (sentiment == "positive"? 1 : 0),
+      "Sentiment": sentiment,
       "Sleephours": values.sleep.count,
       "Rating":values.sleep.rate
     };
