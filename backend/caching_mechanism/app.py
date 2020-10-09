@@ -5,7 +5,7 @@ import pandas as pd
 df = pd.read_csv('u00_features.csv')[['timestamp', 'conversation', 'phone_charging', 'activity_inference_0', 'activity_inference_1']].head(72)
 
 app = Flask(__name__)
-cors = CORS(app)
+CORS(app)
 
 @app.route('/')
 def home():
