@@ -1,7 +1,6 @@
 import json
 import os
 
-import pandas as pd
 import requests
 from flask import Flask, request
 from flask_cors import CORS
@@ -18,10 +17,13 @@ VALUE_KEY = 'value'
 
 ####################### AZURE CREDENTIALS #####################
 CREDENTIALS_FILE = 'credentials.csv'
-df = pd.read_csv(CREDENTIALS_FILE)
-endpoint = df['endpoint'][0]
-subscription_key = df['key'][0]
-del df
+read_fields = lambda line: line.strip().split(',')
+with open(CREDENTIALS_FILE) as f:
+    header = read_fields(f.readline())
+    key_idx = 0 if header[0] == 'key' else 1
+    endpoint_idx = 1 - key_idx
+    credentials = read_fields(f.readline())
+    subscription_key, endpoint = credentials[key_idx], credentials[endpoint_idx]
 ###############################################################
 
 GRANULARITY = 'hourly'
@@ -98,4 +100,4 @@ def latest_point():
         return check_result(send_request(LATEST_POINT_DETECTION, format_request_data(points)))
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=5001)
+    app.run(host='0.0.0.0', port=5001)
