@@ -30,3 +30,9 @@ services:
     container_name: database_api
     ports: 
       - "3500:3500"
+  frontend:
+    build: ./frontend
+    image: frontend
+    container_name: frontend
+    ports:
+      - "8000:8000"
