@@ -1,0 +1,32 @@
+version: "3"
+services:
+  caching_mechanism:
+    build: ./backend/caching_mechanism
+    image: caching_mechanism
+    container_name: caching_mechanism
+    ports:
+      - "5003:5003"
+  anomaly_detection_api:
+    build: ./backend/anomaly_detection_api
+    image: anomaly_detection_api
+    container_name: anomaly_detection_api
+    ports:
+      - "5001:5001"
+  notification_socket:
+    build: ./backend/notification_socket
+    image: notification_socket
+    container_name: notification_socket
+    ports:
+      - "5000:5000"
+  sentiment_analysis_api:
+    build: ./backend/sentiment_analysis_api
+    image: sentiment_analysis_api
+    container_name: sentiment_analysis_api
+    ports:
+      - "5002:5002"
+  database_api:
+    build: ./backend/database_api
+    image: database_api
+    container_name: database_api
+    ports: 
+      - "3500:3500"
